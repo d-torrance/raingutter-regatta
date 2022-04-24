@@ -48,6 +48,11 @@ class Regatta:
             self.run_match(current_match)
             round += 1
             print()
+        print("Winners")
+        print("-------")
+        print(f"1. {self.tournament.get_matches()[-1].get_winner_participant().get_competitor()}")
+        print(f"2. {self.tournament.get_matches()[-1].get_loser_participant().get_competitor()}")
+        print(f"3. {self.tournament.get_matches()[-2].get_loser_participant().get_competitor()}")
 
 
 if __name__ == "__main__":
