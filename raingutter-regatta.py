@@ -7,6 +7,19 @@ class Regatta:
             participants = [line.strip() for line in f]
         self.tournament = double_elimination.Tournament(participants)
 
+    def print_bracket(self):
+        print("Current bracket")
+        print("---------------")
+        for match in self.tournament.get_matches():
+            (left, right) = tuple(match.get_participants())
+            match_info = f"{left.get_competitor()} v. {right.get_competitor()}"
+            winner = match.get_winner_participant().get_competitor()
+            if winner != None:
+                match_info += f" -> {winner}"
+            print(match_info)
+        print()
+
+
     def run_match(self, match):
         (left, right) = tuple(match.get_participants())
         participants = {
@@ -28,6 +41,7 @@ class Regatta:
         print("=================================\n")
         round = 1
         while len(self.tournament.get_active_matches()) > 0:
+            self.print_bracket()
             print(f"Round {round}")
             print((len(str(round)) + 6) * '-')
             current_match = self.tournament.get_active_matches()[0]
